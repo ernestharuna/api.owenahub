@@ -18,8 +18,8 @@ class RegisterController extends Controller
             'first_name' => ['required', 'min:2', 'max:20'],
             'last_name' => ['required', 'min:2', 'max:20'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'gender' => 'required',
-            'date_of_birth' => 'required|date',
+            // 'gender' => 'required',
+            // 'date_of_birth' => 'required|date',
             'password' =>  ['required', 'confirmed', Password::min(8)->letters()->symbols()],
         ]);
 
@@ -30,12 +30,12 @@ class RegisterController extends Controller
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'gender' => $data['gender'],
-            'date_of_birth' => $data['date_of_birth'],
+            // 'gender' => $data['gender'],
+            // 'date_of_birth' => $data['date_of_birth'],
             'password' => Hash::make($data['password'])
         ]);
 
-        $token = $user->createToken('main')->plainTextToken;
+        $token = $user->createToken('user')->plainTextToken;
 
         return response([
             'user' => $user,

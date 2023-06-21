@@ -24,7 +24,7 @@ class LoginController extends Controller
                  * @var User $user
                  */
                 $user = Auth::user();
-                $token = $user->createToken('main')->plainTextToken;
+                $token = $user->createToken('user')->plainTextToken;
 
                 return response([
                     'user' => $user,
