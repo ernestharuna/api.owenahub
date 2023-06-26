@@ -31,7 +31,6 @@ class LoginController extends Controller
                     'token' => $token
                 ]);
             }
-
             return response([
                 'message' => 'Email or Password is incorrect'
             ], 422);
