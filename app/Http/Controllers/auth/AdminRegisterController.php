@@ -2,44 +2,43 @@
 
 namespace App\Http\Controllers\auth;
 
-use GuzzleHttp\RetryMiddleware;
+use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
-class RegisterController extends Controller
+class AdminRegisterController extends Controller
 {
-    public function register(Request $request)
+
+    function register(Request $request): Response
     {
         $data = $request->validate([
             'first_name' => ['required', 'min:2', 'max:20'],
             'last_name' => ['required', 'min:2', 'max:20'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
-            // 'gender' => 'required',
-            // 'date_of_birth' => 'required|date',
+            'email' => ['required', 'email', Rule::unique('admin', 'email')],
             'password' =>  ['required', 'confirmed', Password::min(8)->letters()->symbols()],
         ]);
 
         /**
-         * @var User $user
+         * @var Admin $admin
          */
-        $user = User::create([
+
+        $admin = Admin::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'gender' => $data['gender'],
             'email' => $data['email'],
-            // 'gender' => $data['gender'],
-            // 'date_of_birth' => $data['date_of_birth'],
             'password' => Hash::make($data['password'])
         ]);
 
-        $token = $user->createToken('user');
+        $a_token = $admin->createToken('admin');
 
         return response([
-            'user' => $user,
-            'token' => $token->plainTextToken,
+            'admin' => $admin,
+            'a_token' => $a_token->plainTextToken,
         ]);
     }
 }

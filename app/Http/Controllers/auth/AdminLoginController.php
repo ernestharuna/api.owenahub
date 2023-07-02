@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class AdminLoginController extends Controller
 {
-    public function login(Request $request)
+    function login(Request $request): Response
     {
         $remember = $request->input('remember', false);
 
@@ -22,14 +21,14 @@ class LoginController extends Controller
         try {
             if (Auth::attempt($data, $remember)) {
                 /**
-                 * @var User $user
+                 * @var Admin $admin
                  */
-                $user = Auth::user();
-                $token = $user->createToken('user');
+                $admin = Auth::user();
+                $a_token = $admin->createToken('admin');
 
                 return response([
-                    'user' => $user,
-                    'token' => $token->plainTextToken,
+                    'admin' => $admin,
+                    'a_token' => $a_token->plainTextToken,
                 ]);
             }
             return response([
@@ -37,20 +36,20 @@ class LoginController extends Controller
             ], 422);
         } catch (\Exception $e) {
             return response([
-                'error' => 'An error occurred while processing the request'
+                'error' => 'An error occured',
             ], 500);
         }
     }
 
-
-    public function logout(Request $request): Response
+    // logout function
+    function logout(Request $request): Response
     {
         /**
-         * @var User $user
+         * @var Admin $admin
          */
 
-        $user = $request->user();
-        $user->currentAccessToken()->delete();
+        $admin = $request->user();
+        $admin->currentAccessToken()->delete();
 
         return response(null, 204);
     }

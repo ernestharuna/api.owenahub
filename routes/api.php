@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\auth\AdminLoginController;
+use App\Http\Controllers\auth\AdminRegisterController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
 use Illuminate\Http\Request;
@@ -25,3 +27,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::post('/admin/register', [AdminRegisterController::class, 'register']);
+Route::post('/admin/login', [AdminLoginController::class]);
