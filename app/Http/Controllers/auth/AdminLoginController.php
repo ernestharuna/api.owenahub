@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\RequestGuard;
 
 class AdminLoginController extends Controller
 {
@@ -19,16 +20,16 @@ class AdminLoginController extends Controller
         ]);
 
         try {
-            if (Auth::attempt($data, $remember)) {
+            if (Auth::guard('admin')->attempt($data, $remember)) {
                 /**
                  * @var Admin $admin
                  */
-                $admin = Auth::user();
-                $a_token = $admin->createToken('admin');
+                $admin = Auth::guard('admin')->user();
+                $token = $admin->createToken('admin_login_token')->plainTextToken;
 
                 return response([
                     'admin' => $admin,
-                    'a_token' => $a_token->plainTextToken,
+                    'token' => $token,
                 ]);
             }
             return response([
@@ -37,6 +38,7 @@ class AdminLoginController extends Controller
         } catch (\Exception $e) {
             return response([
                 'error' => 'An error occured',
+                'message' => $e->getMessage(),
             ], 500);
         }
     }

@@ -42,12 +42,13 @@ return [
         ],
 
         // Guard API routes
-        'api_user' => [
+        'user' => [
             'driver' => 'sanctum',
             'provider' => 'users',
         ],
-        'api_admin' => [
-            'driver' => 'sanctum',
+
+        'admin' => [
+            'driver' => 'session',
             'provider' => 'admins',
         ],
     ],
@@ -75,7 +76,7 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // for guard
+        // for admin guard
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
@@ -85,6 +86,7 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        //--------------
     ],
 
     /*
