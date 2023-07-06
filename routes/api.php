@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\auth\AdminLoginController;
 use App\Http\Controllers\auth\AdminRegisterController;
 use App\Http\Controllers\auth\LoginController;
@@ -27,7 +28,10 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/logout', [LoginController::class, 'logout']);
     Route::post('/admin/logout', [AdminLoginController::class, 'logout']);
+
+    Route::apiResource('/articles', ArticleController::class);
 });
 
+Route::get('guest/articles', [ArticleController::class, 'index']);
 Route::post('/admin/register', [AdminRegisterController::class, 'register']);
 Route::post('/admin/login', [AdminLoginController::class, 'login']);

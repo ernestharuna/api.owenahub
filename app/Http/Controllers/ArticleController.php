@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        return ArticleResource::collection(Article::latest()->get());
     }
 
     /**
@@ -20,7 +21,21 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => ['required', 'min:5', 'max:100'],
+            'content' => 'required'
+        ]);
+
+        try {
+            $article = Article::create($data);
+            return response(new ArticleResource($article));
+        } catch (\Exception $e) {
+            return response([
+                'message' => $e,
+            ], 500);
+
+            throw $e;
+        }
     }
 
     /**
