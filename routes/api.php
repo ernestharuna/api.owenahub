@@ -33,5 +33,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('guest/articles', [ArticleController::class, 'index']);
+
 Route::post('/admin/register', [AdminRegisterController::class, 'register']);
 Route::post('/admin/login', [AdminLoginController::class, 'login']);

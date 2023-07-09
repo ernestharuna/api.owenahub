@@ -28,7 +28,7 @@ class ArticleResource extends JsonResource
             'tags' => $this->tags,
             'userId' => $this->user_id,
             'adminId' => $this->admin_id,
-            'createdAt' => $this->create_at,
+            'createdAt' => $this->created_at,
         ];
     }
 }
