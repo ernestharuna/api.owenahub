@@ -14,9 +14,10 @@ c<?php
             Schema::create('articles', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');
+                $table->string('description');
                 $table->longText('content');
-                $table->string('is_allowed')->default(false);
-                $table->string('tags')->nullable();
+                $table->string('published')->default(false);
+                $table->string('category')->nullable();
                 $table->foreignId('admin_id')->nullable()->constrained(table: 'admins', column: 'id')->onDelete('cascade');
                 $table->foreignId('user_id')->nullable()->constrained(table: 'users', column: 'id')->onDelete('cascade');
                 $table->timestamps();

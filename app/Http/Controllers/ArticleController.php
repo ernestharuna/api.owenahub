@@ -27,7 +27,8 @@ class ArticleController extends Controller
         ]);
 
         try {
-            $article = Article::create($data);
+            // $article = Article::create($data);
+            $article = $request->user()->article()->create($data);
             return response(new ArticleResource($article));
         } catch (\Exception $e) {
             return response([
