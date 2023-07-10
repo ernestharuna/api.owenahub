@@ -44,7 +44,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return new ArticleResource($article);
     }
 
     /**
@@ -60,6 +60,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return response("", 204);
     }
 }

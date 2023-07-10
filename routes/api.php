@@ -32,7 +32,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/articles', ArticleController::class);
 });
 
-Route::get('guest/articles', [ArticleController::class, 'index']);
+Route::prefix('guest')->group(function () {
+    Route::get('articles', [ArticleController::class, 'index']);
+    Route::get('articles/{article}', [ArticleController::class, 'show']);
+});
 
-Route::post('/admin/register', [AdminRegisterController::class, 'register']);
-Route::post('/admin/login', [AdminLoginController::class, 'login']);
+Route::prefix('admin')->group(function () {
+    Route::post('register', [AdminRegisterController::class, 'register']);
+    Route::post('login', [AdminLoginController::class, 'login']);
+});
