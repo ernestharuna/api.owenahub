@@ -23,7 +23,10 @@ class ArticleController extends Controller
     {
         $data = $request->validate([
             'title' => ['required', 'min:5', 'max:100'],
-            'content' => 'required'
+            'description' => ['required', 'min:10', 'max:150'],
+            'content' => 'required',
+            'published' => 'sometimes|nullable',
+            'category' => 'required'
         ]);
 
         try {

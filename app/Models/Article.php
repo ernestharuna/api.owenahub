@@ -11,7 +11,7 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content', 'tags', 'is_allowed',
+        'title', 'description', 'content', 'published', 'category'
     ];
 
     public function admin(): BelongsTo
