@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Mentors;
 
-use App\Models\User;
+use App\Models\Mentor;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class MentorLoginController extends Controller
 {
-    public function login(Request $request)
+    public function login(Request $request): Response
     {
         $remember = $request->input('remember', false);
 
@@ -20,15 +20,15 @@ class LoginController extends Controller
         ]);
 
         try {
-            if (Auth::attempt($data, $remember)) {
+            if (Auth::guard('mentor')->attempt($data, $remember)) {
                 /**
-                 * @var User $user
+                 * @var Mentor $mentor
                  */
-                $user = Auth::user();
-                $token = $user->createToken('user');
+                $mentor = Auth::guard('mentor')->user();
+                $token = $mentor->createToken('mentor_login_token');
 
                 return response([
-                    'user' => $user,
+                    'mentor' => $mentor,
                     'token' => $token->plainTextToken,
                 ]);
             }
@@ -37,20 +37,21 @@ class LoginController extends Controller
             ], 422);
         } catch (\Exception $e) {
             return response([
-                'error' => 'An error occurred while processing the request'
+                'error' => 'An error occured',
+                'message' => $e->getMessage(),
             ], 500);
         }
     }
 
-
-    public function logout(Request $request): Response
+    // logout function
+    function logout(Request $request): Response
     {
         /**
-         * @var User $user
+         * @var Mentor $mentor
          */
 
-        $user = $request->user();
-        $user->currentAccessToken()->delete();
+        $mentor = $request->user();
+        $mentor->currentAccessToken()->delete();
 
         return response(null, 204);
     }

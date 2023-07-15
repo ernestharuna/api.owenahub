@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\RequestGuard;
 
 class AdminLoginController extends Controller
 {
@@ -25,11 +24,11 @@ class AdminLoginController extends Controller
                  * @var Admin $admin
                  */
                 $admin = Auth::guard('admin')->user();
-                $token = $admin->createToken('admin_login_token')->plainTextToken;
+                $token = $admin->createToken('admin_login_token');
 
                 return response([
                     'admin' => $admin,
-                    'token' => $token,
+                    'token' => $token->plainTextToken,
                 ]);
             }
             return response([

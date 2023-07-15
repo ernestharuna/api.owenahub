@@ -1,47 +1,54 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Mentors;
 
-use App\Models\Admin;
+use App\Models\Mentor;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
-class AdminRegisterController extends Controller
+class MentorRegisterController extends Controller
 {
-
-    function register(Request $request)
+    public function register(Request $request): Response
     {
         $data = $request->validate([
             'first_name' => ['required', 'min:2', 'max:20'],
             'last_name' => ['required', 'min:2', 'max:20'],
-            'email' => ['required', 'email', Rule::unique('admins', 'email')],
+            'gender' => ['required'],
+            'field' => ['required', 'min:2', 'max:20'],
+            'exp_years' => 'required',
+            'date_of_birth' => ['required', 'min:5', 'max:15'],
+            'email' => ['required', 'email', Rule::unique('mentors', 'email')],
             'password' =>  ['required', 'confirmed', Password::min(8)->letters()->symbols()],
         ]);
 
         /**
-         * @var Admin $admin
+         * @var Mentor $mentor
          */
-
         try {
-            $admin = Admin::create([
+            $mentor = Mentor::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
+                'gender' => $data['gender'],
+                'field' => $data['field'],
+                'exp_years' => $data['exp_years'],
+                'date_of_birth' => $data['date_of_birth'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password'])
             ]);
 
-            $token = $admin->createToken('admin_token');
+            $token = $mentor->createToken('mentor_token');
 
             return response([
-                'admin' => $admin,
+                'mentor' => $mentor,
                 'token' => $token->plainTextToken,
             ]);
         } catch (\Exception $e) {
             return response([
-                'message' => $e,
+                'message' => $e
             ], 500);
 
             throw $e;

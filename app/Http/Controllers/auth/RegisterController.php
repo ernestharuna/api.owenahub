@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\auth;
+namespace App\Http\Controllers\Auth;
 
 use GuzzleHttp\RetryMiddleware;
 use Illuminate\Http\Request;

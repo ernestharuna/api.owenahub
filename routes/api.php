@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\auth\AdminLoginController;
-use App\Http\Controllers\auth\AdminRegisterController;
-use App\Http\Controllers\auth\LoginController;
-use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\AdminRegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
