@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mentors;
+use App\Models\Mentor;
 use Illuminate\Http\Request;
 
-class MentorsController extends Controller
+class MentorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class MentorsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Mentors $mentors)
+    public function show(Mentor $mentor)
     {
         //
     }
@@ -34,7 +34,7 @@ class MentorsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Mentors $mentors)
+    public function update(Request $request, Mentor $mentor)
     {
         //
     }
@@ -42,7 +42,7 @@ class MentorsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Mentors $mentors)
+    public function destroy(Mentor $mentor)
     {
         //
     }
