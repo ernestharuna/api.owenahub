@@ -47,6 +47,11 @@ return [
             'provider' => 'users',
         ],
 
+        'mentor' => [
+            'driver' => 'session',
+            'provider' => 'mentors',
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -74,6 +79,12 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        // for mentor guard
+        'mentors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mentor::class,
         ],
 
         // for admin guard

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Waitlist;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class WaitlistController extends Controller
 {
@@ -20,7 +21,34 @@ class WaitlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'interest' => 'required',
+            'email' => ['required', 'email', Rule::unique('waitlists', 'email')],
+        ]);
+
+        /**
+         * @var Waitlist $user
+         */
+
+        try {
+            $user = Waitlist::create([
+                'name' => $data['name'],
+                'interest' => $data['interest'],
+                'email' => $data['email']
+            ]);
+
+            return response([
+                'user' => $user,
+                'message' => $user['email'] . " has been added to the waitlist",
+            ]);
+        } catch (\Exception $e) {
+            return response([
+                'message' => $e
+            ], 500);
+
+            throw $e;
+        }
     }
 
     /**

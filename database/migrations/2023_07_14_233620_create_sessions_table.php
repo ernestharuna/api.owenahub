@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('meeting_link');
             $table->boolean('accepted')->default(false);
             $table->foreignId('user_id')->constrained();

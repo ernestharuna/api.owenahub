@@ -19,6 +19,11 @@ class Article extends Model
         return $this->belongsTo(Admin::class);
     }
 
+    public function mentor(): BelongsTo
+    {
+        return $this->belongsTo(Mentor::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
