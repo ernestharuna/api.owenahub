@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('field');
             $table->integer('exp_years');
-            $table->date('date_of_birth');
+            $table->date('date_of_birth')->nullable();
             $table->string('email');
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();

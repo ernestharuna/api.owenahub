@@ -41,7 +41,7 @@ class WaitlistController extends Controller
             return response([
                 'user' => $user,
                 'message' => $user['email'] . " has been added to the waitlist",
-            ]);
+            ], 200);
         } catch (\Exception $e) {
             return response([
                 'message' => $e

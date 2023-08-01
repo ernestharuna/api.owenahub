@@ -4,6 +4,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\AdminRegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\Mentors\MentorLoginController;
+use App\Http\Controllers\Auth\Mentors\MentorRegisterController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\WaitlistController;
 use Illuminate\Http\Request;
@@ -20,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// User auth controller
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
 
@@ -28,9 +31,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    // logout routes
     Route::post('/logout', [LoginController::class, 'logout']);
     Route::post('/admin/logout', [AdminLoginController::class, 'logout']);
+    Route::post('/mentor/logout', [MentorLoginController::class, 'logout']);
 
+    // Article API resource
     Route::apiResource('/articles', ArticleController::class);
 });
 
@@ -44,6 +50,12 @@ Route::prefix('guest')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::post('register', [AdminRegisterController::class, 'register']);
     Route::post('login', [AdminLoginController::class, 'login']);
+});
+
+// Mentor APIs 
+Route::prefix('mentor')->group(function () {
+    Route::post('register', [MentorRegisterController::class, 'register']);
+    Route::post('login', [MentorLoginController::class, 'login']);
 });
 
 // Waitlist

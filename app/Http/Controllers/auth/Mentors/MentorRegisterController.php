@@ -17,10 +17,9 @@ class MentorRegisterController extends Controller
         $data = $request->validate([
             'first_name' => ['required', 'min:2', 'max:20'],
             'last_name' => ['required', 'min:2', 'max:20'],
-            'gender' => ['required'],
+            'gender' => ['required', 'max:7'],
             'field' => ['required', 'min:2', 'max:20'],
-            'exp_years' => 'required',
-            'date_of_birth' => ['required', 'min:5', 'max:15'],
+            'exp_years' => ['required'],
             'email' => ['required', 'email', Rule::unique('mentors', 'email')],
             'password' =>  ['required', 'confirmed', Password::min(8)->letters()->symbols()],
         ]);
@@ -35,7 +34,6 @@ class MentorRegisterController extends Controller
                 'gender' => $data['gender'],
                 'field' => $data['field'],
                 'exp_years' => $data['exp_years'],
-                'date_of_birth' => $data['date_of_birth'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password'])
             ]);
@@ -45,7 +43,7 @@ class MentorRegisterController extends Controller
             return response([
                 'mentor' => $mentor,
                 'token' => $token->plainTextToken,
-            ]);
+            ], 200);
         } catch (\Exception $e) {
             return response([
                 'message' => $e
