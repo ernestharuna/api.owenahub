@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MentorResource;
 use App\Models\Mentor;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class MentorController extends Controller
      */
     public function index()
     {
-        //
+        return MentorResource::collection(Mentor::get());
     }
 
     /**
@@ -28,7 +29,7 @@ class MentorController extends Controller
      */
     public function show(Mentor $mentor)
     {
-        //
+        return new MentorResource($mentor);
     }
 
     /**
