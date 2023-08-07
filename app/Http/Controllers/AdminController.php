@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AdminResource;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return AdminResource::collection(Admin::latest()->get());
     }
 
     /**
@@ -28,7 +29,7 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        //
+        return new AdminResource($admin);
     }
 
     /**

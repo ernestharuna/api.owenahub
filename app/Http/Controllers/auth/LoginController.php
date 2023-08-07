@@ -37,7 +37,8 @@ class LoginController extends Controller
             ], 422);
         } catch (\Exception $e) {
             return response([
-                'error' => 'An error occurred while processing the request'
+                'error' => 'An error occurred while processing the request',
+                'message' => $e
             ], 500);
         }
     }

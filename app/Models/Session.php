@@ -10,6 +10,11 @@ class Session extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title', 'description', 'meeting_link', 'session_code', 'paid',
+        'accepted', 'accepted', 'user_id', 'mentor_id'
+    ];
+
     public function mentor(): BelongsTo
     {
         return $this->belongsTo(Mentor::class);
@@ -19,9 +24,4 @@ class Session extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    protected $fillable = [
-        'name', 'meeting_link', 'session_code',
-        'accepted', 'user_id', 'mentor_id'
-    ];
 }

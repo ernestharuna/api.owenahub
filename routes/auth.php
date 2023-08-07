@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\AdminRegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\Mentors\MentorLoginController;
 use App\Http\Controllers\Auth\Mentors\MentorRegisterController;
@@ -28,6 +29,6 @@ Route::prefix('mentor')->group(function () {
 
 // Admin Auth APIs
 Route::prefix('admin')->group(function () {
-    Route::post('register', [AdminLoginController::class, 'register']);
+    Route::post('register', [AdminRegisterController::class, 'register']);
     Route::post('login', [AdminLoginController::class, 'login']);
 });

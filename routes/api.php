@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\WaitlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::apiResource('/articles', ArticleController::class);
     Route::apiResource('/mentors', MentorController::class);
+    Route::apiResource('/sessions', SessionController::class);
 });
 
 // Guest APIs

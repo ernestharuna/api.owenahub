@@ -7,7 +7,7 @@ use App\Models\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class SessionsController extends Controller
+class SessionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,12 +24,12 @@ class SessionsController extends Controller
     {
         $data = $request->validate([
             'title' => ['required', 'max:50'],
-            'description' => ['required', 'min:50'],
+            'description' => ['required', 'max:250'],
             'mentor_id' => ['required']
         ]);
 
         try {
-            $session = $request->user()->create($data);
+            $session = $request->user()->session()->create($data);
 
             $code = Str::random(8);
             while (Session::where('session_code', $code)->exists()) {

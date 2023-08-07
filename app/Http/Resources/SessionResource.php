@@ -14,6 +14,16 @@ class SessionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'meetingLink' => $this->meeting_link,
+            'sessionCode' => $this->session_code,
+            'paid' => $this->paid,
+            'accepted' => $this->accepted,
+            'mentorId' => $this->mentor_id,
+            'userId' => $this->user_id,
+        ];
     }
 }

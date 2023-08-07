@@ -13,7 +13,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return ArticleResource::collection(Article::latest()->get());
+        return ArticleResource::collection(Article::with('admin', 'user')->latest()->get());
     }
 
     /**
