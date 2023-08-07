@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('meeting_link');
-            $table->string('session_code');
+            $table->text('description');
+            $table->string('meeting_link')->nullable();
+            $table->string('session_code', 8)->unique()->nullable();
+            $table->boolean('paid')->default(false);
             $table->boolean('accepted')->default(false);
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('mentor_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('mentor_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

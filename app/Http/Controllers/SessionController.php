@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SessionResource;
 use App\Models\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SessionsController extends Controller
 {
@@ -12,7 +14,7 @@ class SessionsController extends Controller
      */
     public function index()
     {
-        //
+        return SessionResource::collection(Session::latest()->get());
     }
 
     /**
@@ -20,7 +22,29 @@ class SessionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => ['required', 'max:50'],
+            'description' => ['required', 'min:50'],
+            'mentor_id' => ['required']
+        ]);
+
+        try {
+            $session = $request->user()->create($data);
+
+            $code = Str::random(8);
+            while (Session::where('session_code', $code)->exists()) {
+                $code = Str::random(8);
+            }
+            $session->session_code = $code;
+            $session->save();
+
+            return response(new SessionResource($session), 200);
+        } catch (\Exception $e) {
+            return response([
+                'message' => $e
+            ], 500);
+            throw $e;
+        }
     }
 
     /**
@@ -28,7 +52,7 @@ class SessionsController extends Controller
      */
     public function show(Session $session)
     {
-        //
+        return new SessionResource($session);
     }
 
     /**
@@ -44,6 +68,7 @@ class SessionsController extends Controller
      */
     public function destroy(Session $session)
     {
-        //
+        $session->delete();
+        return response("", 204);
     }
 }

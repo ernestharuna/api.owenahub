@@ -54,4 +54,9 @@ class Mentor extends Authenticatable
     {
         return $this->hasMany(Session::class);
     }
+
+    public function education(): HasMany
+    {
+        return $this->hasMany(Education::class);
+    }
 }
