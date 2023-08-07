@@ -19,8 +19,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name', 'last_name', 'gender',
-        'email', 'date_of_birth', 'password',
+        'first_name', 'last_name', 'gender', 'bio', 'field', 'twitter_handle', 'linkedin_handle',
+        'language', 'interest', 'email', 'date_of_birth', 'password',
     ];
 
     public function article(): HasMany

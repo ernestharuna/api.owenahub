@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('meeting_link');
-            $table->string('session_code');
-            $table->boolean('accepted')->default(false);
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('mentor_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('education');
     }
 };

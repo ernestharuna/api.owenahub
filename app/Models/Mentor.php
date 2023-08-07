@@ -21,8 +21,8 @@ class Mentor extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name', 'last_name', 'gender', 'field', 'exp_years', 'date_of_birth',
-        'email', 'password',
+        'first_name', 'last_name', 'gender', 'bio', 'field', 'language',
+        'twitter_handle', 'linkedin_handle', 'exp_years', 'date_of_birth', 'email', 'password',
     ];
 
     /**

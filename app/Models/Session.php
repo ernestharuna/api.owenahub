@@ -21,6 +21,7 @@ class Session extends Model
     }
 
     protected $fillable = [
-        'name', 'meeting_link', 'accepted', 'user_id', 'mentor_id'
+        'name', 'meeting_link', 'session_code',
+        'accepted', 'user_id', 'mentor_id'
     ];
 }

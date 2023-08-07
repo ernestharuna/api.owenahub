@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('gender');
-            $table->string('field');
+            $table->text('bio')->nullable();
+            $table->string('field')->nullable();
+            $table->string('language')->nullable();
+            $table->string('twitter_handle')->nullable();
+            $table->string('linkedin_handle')->nullable();
             $table->integer('exp_years');
             $table->date('date_of_birth')->nullable();
             $table->string('email');
