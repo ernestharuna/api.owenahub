@@ -28,14 +28,10 @@ class ArticleResource extends JsonResource
             'content' => $this->content,
             'published' => $this->published,
             'category' => $this->category,
-            'userId' => $this->user_id,
-            'adminId' => $this->admin_id,
             'createdAt' => $this->created_at,
             'mentor' => new AdminResource($this->mentor),
             'user' => new AdminResource($this->user),
             'admin' => new AdminResource($this->admin),
-            // 'mentor' => $this->mentor,
-            // 'admin' => $this->admin,
         ];
     }
 }

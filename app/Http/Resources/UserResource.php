@@ -28,6 +28,8 @@ class UserResource extends JsonResource
             'gender' => $this->gender,
             'dateOfBirth' => $this->date_of_birth,
             'articles' => ArticleResource::collection($this->whenLoaded('article')),
+            'sessions' => ArticleResource::collection($this->whenLoaded('session')),
+            'education' => ArticleResource::collection($this->whenLoaded('education')),
         ];
     }
 }

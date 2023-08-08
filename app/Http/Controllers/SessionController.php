@@ -14,7 +14,7 @@ class SessionController extends Controller
      */
     public function index()
     {
-        return SessionResource::collection(Session::latest()->get());
+        return SessionResource::collection(Session::with('mentor', 'user')->latest()->get());
     }
 
     /**

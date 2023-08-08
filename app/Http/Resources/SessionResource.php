@@ -22,8 +22,8 @@ class SessionResource extends JsonResource
             'sessionCode' => $this->session_code,
             'paid' => $this->paid,
             'accepted' => $this->accepted,
-            'mentorId' => $this->mentor_id,
-            'userId' => $this->user_id,
+            'mentor' => new MentorResource($this->mentor),
+            'mentee' => new UserResource($this->user),
         ];
     }
 }
