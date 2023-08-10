@@ -12,7 +12,7 @@ class Session extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'meeting_link', 'session_code', 'paid',
+        'title', 'description', 'meeting_link', 'meeting_date', 'session_code', 'paid',
         'accepted', 'accepted', 'user_id', 'mentor_id'
     ];
 

@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('meeting_link')->nullable();
             $table->string('session_code', 8)->unique()->nullable();
+            $table->string('meeting_link')->nullable();
+            $table->string('meeting_date')->nullable();
             $table->boolean('paid')->default(false);
             $table->boolean('accepted')->default(false);
             $table->foreignId('user_id')->constrained();
