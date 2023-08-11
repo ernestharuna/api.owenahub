@@ -64,4 +64,9 @@ class Mentor extends Authenticatable
     {
         return $this->hasMany(WorkTimeline::class);
     }
+
+    public function group_session(): HasMany
+    {
+        return $this->hasMany(GroupSession::class);
+    }
 }
