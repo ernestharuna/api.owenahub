@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\GroupSessionController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\WaitlistController;
@@ -25,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/articles', ArticleController::class);
     Route::apiResource('/mentors', MentorController::class);
     Route::apiResource('/sessions', SessionController::class);
+    Route::apiResource('/group-sessions', GroupSessionController::class);
 });
 
 // Guest APIs

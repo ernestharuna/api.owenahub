@@ -13,7 +13,7 @@ class MentorController extends Controller
      */
     public function index()
     {
-        return MentorResource::collection(Mentor::get());
+        return MentorResource::collection(Mentor::with('group_session')->get());
     }
 
     /**

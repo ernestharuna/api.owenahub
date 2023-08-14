@@ -36,6 +36,6 @@ class RegisterController extends Controller
         return response([
             'user' => $user,
             'token' => $token->plainTextToken,
-        ]);
+        ], 200);
     }
 }

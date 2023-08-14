@@ -12,7 +12,7 @@ class GroupSession extends Model
 
     protected $fillable = [
         'topic', 'description', 'meeting_link',
-        'max_attendants', 'start_time', 'end_time'
+        'max_attendants', 'date', 'start_time', 'end_time'
     ];
 
     public function mentor(): BelongsTo

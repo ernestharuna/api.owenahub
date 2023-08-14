@@ -13,7 +13,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return ArticleResource::collection(Article::with('admin', 'user')->latest()->get());
+        return ArticleResource::collection(
+            Article::with('admin', 'user')->latest()->get()
+        );
     }
 
     /**
@@ -31,7 +33,7 @@ class ArticleController extends Controller
 
         try {
             $article = $request->user()->article()->create($data);
-            return response(new ArticleResource($article));
+            return response(new ArticleResource($article), 200);
         } catch (\Exception $e) {
             return response([
                 'message' => $e,

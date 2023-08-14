@@ -28,6 +28,7 @@ class MentorResource extends JsonResource
             'dateOfBirth' => $this->date_of_birth,
             'email' => $this->email,
             'createdAt' => $this->created_at,
+            'groupSessions' => $this->group_session,
         ];
     }
 }

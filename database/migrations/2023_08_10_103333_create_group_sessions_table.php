@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('group_sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mentor_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('mentor_id')->constrained()->cascadeOnDelete();
             $table->string('topic');
             $table->string('description');
-            $table->string('meeting_link');
+            $table->string('meeting_link')->nullable();
             $table->string('max_attendants')->nullable();
-            $table->time('start_time')->nullable();
+            $table->date('date');
+            $table->time('start_time');
             $table->time('end_time')->nullable();
             $table->timestamps();
         });

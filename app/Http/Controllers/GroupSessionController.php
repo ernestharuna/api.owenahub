@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\GroupSessionResource;
 use App\Models\GroupSession;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class GroupSessionController extends Controller
      */
     public function index()
     {
-        //
+        return GroupSessionResource::collection(
+            GroupSession::with('mentor')->latest()->get()
+        );
     }
 
     /**
@@ -20,7 +23,25 @@ class GroupSessionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'topic' => ['required', 'max:30'],
+            'description' => ['required', 'max:250'],
+            'meeting_link' => ['sometimes', 'nullable'],
+            'max_attendants' => ['sometimes', 'nullable'],
+            'date' => ['required'],
+            'start_time' => ['required'],
+            'end_time' => ['sometimes', 'nullable']
+        ]);
+
+        try {
+            $session = $request->user()->group_session()->create($data);
+            return response(new GroupSessionResource($session), 200);
+        } catch (\Exception $e) {
+            return response([
+                'message' => $e,
+            ], 500);
+            throw $e;
+        }
     }
 
     /**
@@ -28,7 +49,7 @@ class GroupSessionController extends Controller
      */
     public function show(GroupSession $groupSession)
     {
-        //
+        return new GroupSessionResource($groupSession);
     }
 
     /**
@@ -44,6 +65,7 @@ class GroupSessionController extends Controller
      */
     public function destroy(GroupSession $groupSession)
     {
-        //
+        $groupSession->delete();
+        return response("", 204);
     }
 }
