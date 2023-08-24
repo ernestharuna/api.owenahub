@@ -56,7 +56,18 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $data = $request->validate([
+            'title' => ['required', 'min:5', 'max:100'],
+            'description' => ['required', 'min:10', 'max:150'],
+            'content' => 'required',
+            'published' => 'sometimes|nullable',
+            'category' => 'required'
+        ]);
+        $article->update($data);
+
+        return response([
+            'article' => $data,
+        ], 200);
     }
 
     /**
