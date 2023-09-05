@@ -22,10 +22,12 @@ class WaitlistController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'sometimes|nullable',
+            'name' => 'required',
             'interest' => 'sometimes|nullable',
             'email' => ['required', 'email', Rule::unique('waitlists', 'email')],
         ]);
+
+        $data['interest'] = $data['interest'] ?? 'Newsletter';
 
         /**
          * @var Waitlist $user
