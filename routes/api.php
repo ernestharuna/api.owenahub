@@ -33,9 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::prefix('guest')->group(function () {
     Route::get('articles', [ArticleController::class, 'index']);
     Route::get('articles/{article}', [ArticleController::class, 'show']);
-
     Route::get('mentors', [MentorController::class, 'index']);
-
     Route::post('waitlist/create', [WaitlistController::class, 'store']);
 });
 
