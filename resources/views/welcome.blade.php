@@ -13,14 +13,13 @@
 
     <style>
         body {
-            background: #dcdcdc;
+            background: #e9e7e7;
             font-family: Tahoma, sans-serif;
         }
 
         body div {
             padding: 1rem 2rem;
             margin: 10rem auto;
-            border: 1px solid #000;
             border-radius: 8px;
             text-align: center;
             background: #fff;
