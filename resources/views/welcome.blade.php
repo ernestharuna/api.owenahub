@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Active Server</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,7 +13,7 @@
 
     <style>
         body {
-            background: #F6F7F8;
+            background: #dcdcdc;
             font-family: Tahoma, sans-serif;
         }
 
@@ -21,7 +21,7 @@
             padding: 1rem 2rem;
             margin: 10rem auto;
             border: 1px solid #000;
-            border-radius: 3px;
+            border-radius: 8px;
             text-align: center;
             background: #fff;
             width: max-content;
