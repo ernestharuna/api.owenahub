@@ -3,8 +3,10 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\GroupSessionController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\OwenamusicController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\WaitlistController;
+use App\Models\Owenamusic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +37,7 @@ Route::prefix('guest')->group(function () {
     Route::get('articles/{article}', [ArticleController::class, 'show']);
     Route::get('mentors', [MentorController::class, 'index']);
     Route::post('waitlist/create', [WaitlistController::class, 'store']);
+    Route::post('owenamusic/create', [OwenamusicController::class, 'store']);
 });
 
 require __DIR__ . '/auth.php';
